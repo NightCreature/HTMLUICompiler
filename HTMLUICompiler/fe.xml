@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+  <!--<include file_name="test.xml"/>-->
+  <definition>
+    <Text>
+      <div class="#style" text="#actual_text#default" />
+    </Text>
+
+    <Button id1="#id">
+      <Text>
+        <div class="Button_Header1" text="lng_button_header" />
+      </Text>
+      <a class="#link_class" href="#link" />
+    </Button>
+  </definition>
+
+  <style><!--Inline css  for style definintions-->
+    
+  </style>
+  
+  <body>
+
+    <Screen id="main_menu">
+      <Button id="test_id145" link_class="foobar145" link="doSomething145"/>
+      <Button id="test_id" link_class="foobar" link="doSomething3"/>
+    </Screen>
+
+
+  </body>
+</html>
