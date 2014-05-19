@@ -28,11 +28,9 @@ namespace HTMLUICompiler
   //</definition>
     public class HTMLDefinitionNode
     {
-        public HTMLDefinitionNode()
+        private HTMLDefinitionNode()
         {
             m_name = "";
-            m_subNodes = new ArrayList();
-            m_attributes = new Dictionary<string, AttributeProperties>();
         }
 
         public HTMLDefinitionNode(XmlNode node, HTMLParserContext context)
