@@ -28,6 +28,13 @@ namespace HTMLUICompiler
   //</definition>
     public class HTMLDefinitionNode
     {
+        public HTMLDefinitionNode()
+        {
+            m_name = "";
+            m_subNodes = new ArrayList();
+            m_attributes = new Dictionary<string, AttributeProperties>();
+        }
+
         public HTMLDefinitionNode(XmlNode node, HTMLParserContext context)
         {
             m_sourceNode = node.CloneNode(true);
@@ -41,7 +48,15 @@ namespace HTMLUICompiler
 
         public HTMLDefinitionNode Clone(HTMLParserContext context)
         {
-            return new HTMLDefinitionNode(m_sourceNode, context); //expensive but easy :)
+            HTMLDefinitionNode copiedNode = new HTMLDefinitionNode();
+            HTMLDefinitionNode[] nodeArray = new HTMLDefinitionNode[m_subNodes.Count];
+            m_subNodes.CopyTo(nodeArray);
+            copiedNode.m_subNodes = new ArrayList( nodeArray );
+            copiedNode.m_name = m_name;
+            copiedNode.m_sourceNode = m_sourceNode.CloneNode(true);
+            copiedNode.m_attributes = new Dictionary<string, AttributeProperties>(m_attributes);
+
+            return copiedNode;
         }
 
         public void FillOutAttribute(XmlAttribute attribute)
