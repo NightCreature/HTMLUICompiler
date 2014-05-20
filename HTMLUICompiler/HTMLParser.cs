@@ -81,9 +81,13 @@ namespace HTMLUICompiler
             //Find style tags, these might be in a single external file or anywhere through out the HTML code
             foreach (XmlNode styles in document.SelectNodes("//style"))
             {
-                foreach (XmlNode styleNode in styles.ChildNodes)
+                //Should only be one of these and all we want is the inner xml which contain css definitions
+                var stylesString = styles.InnerXml.Trim();
+                string[] cssEndMark = {"}"};
+                string[] stylesStrings = stylesString.Split(cssEndMark, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var style in stylesStrings)
                 {
-                    parseContext.addStyleNode(styleNode);
+                    parseContext.addStyleNode(style);
                 }
             }
 

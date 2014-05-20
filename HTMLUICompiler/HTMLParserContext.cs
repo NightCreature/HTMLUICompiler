@@ -13,7 +13,7 @@ namespace HTMLUICompiler
         {
             m_includeFiles = new HashSet<String>();
             m_definitionNodes = new Dictionary<String, HTMLDefinitionNode>();
-            m_styleNodes = new Dictionary<String, XmlNode>();
+            m_styleNodes = new Dictionary<String, CssDefinition>();
         }
 
         public void addIncludeFile(String includeFileName)
@@ -33,16 +33,11 @@ namespace HTMLUICompiler
             }
         }
 
-        public void addStyleNode(XmlNode styleNode)
+        public void addStyleNode(string styleNode)
         {
-            if (!ContainsXmlNode(styleNode, m_styleNodes))
-            {
-                m_styleNodes.Add(styleNode.Name, styleNode);
-            }
-            else
-            {
-                Console.WriteLine("Found a redefinition for {0} looks like <{0}>{1}</{0}>", styleNode.Name, styleNode.InnerXml);
-            }
+            styleNode = styleNode.Trim();
+            CssDefinition cssDef = new CssDefinition(styleNode);
+            m_styleNodes.Add(cssDef.Name, cssDef);
         }
 
         public HashSet<String> getIncludeFileNames()
@@ -138,7 +133,7 @@ namespace HTMLUICompiler
 
         private HashSet<String> m_includeFiles;
         private Dictionary<String, HTMLDefinitionNode> m_definitionNodes;
-        private Dictionary<String, XmlNode> m_styleNodes;
+        private Dictionary<String, CssDefinition> m_styleNodes;
         public XmlDocument IntermediateDocument { get; set; }
         public XmlNode IntermediateRootElement { get; set; }
     }
