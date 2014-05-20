@@ -1,6 +1,16 @@
 <xml>
-  <Screen id="main_menu">
-    <Button id1="test_id145" />
-    <Button id1="test_id" />
+  <Screen id="test_menu">
+    <Button id1="test_id145">
+      <Text>
+        <div class="Button_Header1" text="lng_button_header" />
+      </Text>
+      <a class="foobar145" href="doSomething145" />
+    </Button>
+    <Button id1="test_id">
+      <Text>
+        <div class="Button_Header1" text="lng_button_header" />
+      </Text>
+      <a class="foobar" href="doSomething3" />
+    </Button>
   </Screen>
 </xml>
