@@ -134,15 +134,24 @@ namespace HTMLUICompiler
             {
                 
                 foreach (XmlNode childNode in node.ChildNodes)
+                {                 
+                    m_subNodes.Add(new HTMLDefinitionNode(childNode, context));
+                }
+            }
+
+            for (int counter = 0; counter < m_subNodes.Count; ++counter )
+            {
+                //Need to check whether subnodes are definition nodes if they are we need to copy that node and deal with the attributes of that node.
+                HTMLDefinitionNode subNode = m_subNodes[counter] as HTMLDefinitionNode;
+                if (context.hasDefinition(subNode.m_name))
                 {
-                    if (context.hasDefinition(childNode.Name))
+                    var newSubNode = context.getDefinitionNode(subNode.m_name).Clone(context);
+                    foreach (XmlAttribute attribute in subNode.m_sourceNode.Attributes)
                     {
-                        m_subNodes.Add(context.getDefinitionNode(childNode.Name).Clone( context));
+                        newSubNode.FillOutAttribute(attribute);
+                        m_subNodes[counter] = newSubNode;
                     }
-                    else
-                    {                    
-                        m_subNodes.Add(new HTMLDefinitionNode(childNode, context));
-                    }
+                    
                 }
             }
         }
