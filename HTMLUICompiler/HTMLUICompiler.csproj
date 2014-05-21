@@ -64,6 +64,8 @@
     </Compile>
     <Compile Include="CssDefinition.cs" />
     <Compile Include="CssRule.cs" />
+    <Compile Include="CssRules\ColorCssRule.cs" />
+    <Compile Include="CssRules\CssHelpers.cs" />
     <Compile Include="HTMLDefinitionNode.cs" />
     <Compile Include="HTMLParser.cs" />
     <Compile Include="HTMLParserContext.cs" />

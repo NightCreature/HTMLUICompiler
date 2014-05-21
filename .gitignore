@@ -216,3 +216,4 @@ pip-log.txt
 HTMLUICompiler/intermediate.xml
 HTMLUICompiler/fe.xml
 HTMLUICompiler/intermediate.xml
+*.xml
