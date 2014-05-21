@@ -146,7 +146,7 @@ namespace HTMLUICompiler
                 if (context.hasDefinition(subNode.m_name))
                 {
                     var newSubNode = context.getDefinitionNode(subNode.m_name).Clone(context);
-                    foreach (XmlAttribute attribute in subNode.m_sourceNode.Attributes)
+                    foreach (XmlAttribute attribute in subNode.m_sourceNode.Attributes) //Still some issues here definitions in definitions are still broken
                     {
                         newSubNode.FillOutAttribute(attribute);
                         m_subNodes[counter] = newSubNode;
