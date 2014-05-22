@@ -12,7 +12,7 @@ namespace HTMLUICompiler
         public CssParser(string cssString)
         {
             m_name = "";
-            m_properties = new List<CssRule>();
+            m_properties = new List<CssGroup>();
             decodeCssString(cssString);
         }
 
@@ -36,6 +36,7 @@ namespace HTMLUICompiler
                 if (cssValueTokens.Count() == 2)
                 {
                     //m_properties.Add(cssValueTokens[0], cssValueTokens[1]);
+                    CssHelpers.CssCategory cssCategory = CssHelpers.StringToCssCategory[cssValueTokens[0]];
                 }
                 else
                 {
@@ -47,6 +48,6 @@ namespace HTMLUICompiler
         public string Name { get { return m_name; } }
 
         private string m_name;
-        private List<CssRule> m_properties;
+        private List<CssGroup> m_properties;
     }
 }
