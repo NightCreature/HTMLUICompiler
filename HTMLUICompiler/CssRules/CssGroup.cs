@@ -18,6 +18,19 @@ namespace HTMLUICompiler
             m_rules.Add(rule);
         }
 
+        public CssRule GetCssRule(Type cssToken)
+        {
+            foreach (var rule in m_rules)
+            {
+                if (rule.GetType() == cssToken)
+                {
+                    return rule;
+                }
+            }
+
+            return null;
+        }
+
         private List<CssRule> m_rules;
     }
 

@@ -8,8 +8,6 @@ namespace HTMLUICompiler
 {
     public class CssHelpers
     {
-
-
         public class CssCategory
         {
             public CssCategory(Type cssToken, Type cssGroup)
@@ -23,20 +21,20 @@ namespace HTMLUICompiler
 
         public static Dictionary<string, CssCategory> StringToCssCategory = new Dictionary<string, CssCategory>()
         {
-            {"color", new CssCategory(typeof(COLOR), typeof(Color)) }, 
-            {"opacity", new CssCategory(typeof(OPACITY), typeof(Color)) }, 
+            {"color", new CssCategory(typeof(ColorRule), typeof(Color)) }, 
+            {"opacity", new CssCategory(typeof(OpacityGroup), typeof(Color)) }, 
             {"background", new CssCategory(typeof(BACKGROUND), typeof(BackgroundAndBorders)) }, 
-            {"background-attachment", new CssCategory(typeof(BACKGROUNDATTACHMENT), typeof(BackgroundAndBorders)) }, 
-            {"background-color", new CssCategory(typeof(BACKGROUNDCOLOR), typeof(BackgroundAndBorders)) }, 
-            {"background-image", new CssCategory(typeof(BACKGROUNDIMAGE), typeof(BackgroundAndBorders)) }, 
-            {"background-position", new CssCategory(typeof(BACKGROUNDPOSITION), typeof(BackgroundAndBorders)) }, 
-            {"background-repeat", new CssCategory(typeof(BACKGROUNDREPEAT), typeof(BackgroundAndBorders)) }, 
-            {"background-clip", new CssCategory(typeof(BACKGROUNDCLIP), typeof(BackgroundAndBorders)) }, 
-            {"background-origin", new CssCategory(typeof(BACKGROUNDORIGIN), typeof(BackgroundAndBorders)) }, 
-            {"background-size", new CssCategory(typeof(BACKGROUNDSIZE), typeof(BackgroundAndBorders)) }, 
-            {"border", new CssCategory(typeof(BORDER), typeof(BackgroundAndBorders)) }, 
-            {"border-bottom", new CssCategory(typeof(BORDERBOTTOM), typeof(BackgroundAndBorders)) }, 
-            {"border-bottom-color", new CssCategory(typeof(BORDERBOTTOMCOLOR), typeof(BackgroundAndBorders)) }, 
+            {"background-attachment", new CssCategory(typeof(BackgroundAttachment), typeof(BackgroundAndBorders)) }, 
+            {"background-color", new CssCategory(typeof(BackgroundColor), typeof(BackgroundAndBorders)) }, 
+            {"background-image", new CssCategory(typeof(BackgroundImage), typeof(BackgroundAndBorders)) }, 
+            {"background-position", new CssCategory(typeof(BackgroundPosition), typeof(BackgroundAndBorders)) }, 
+            {"background-repeat", new CssCategory(typeof(BackgroundRepeat), typeof(BackgroundAndBorders)) }, 
+            {"background-clip", new CssCategory(typeof(BackgroundClip), typeof(BackgroundAndBorders)) }, 
+            {"background-origin", new CssCategory(typeof(Backgroundorigin), typeof(BackgroundAndBorders)) }, 
+            {"background-size", new CssCategory(typeof(Backgroundsize), typeof(BackgroundAndBorders)) }, 
+            {"border", new CssCategory(typeof(Border), typeof(BackgroundAndBorders)) }, 
+            {"border-bottom", new CssCategory(typeof(Borderbottom), typeof(BackgroundAndBorders)) }, 
+            {"border-bottom-color", new CssCategory(typeof(BorderBottomColor), typeof(BackgroundAndBorders)) }, 
             {"border-bottom-left-radius", new CssCategory(typeof(BORDERBOTTOMLEFTRADIUS), typeof(BackgroundAndBorders)) }, 
             {"border-bottom-right-radius", new CssCategory(typeof(BORDERBOTTOMRIGHTRADIUS), typeof(BackgroundAndBorders)) }, 
             {"border-bottom-style", new CssCategory(typeof(BORDERBOTTOMSTYLE), typeof(BackgroundAndBorders)) }, 
@@ -254,5 +252,14 @@ namespace HTMLUICompiler
             {"marquee-style", new CssCategory(typeof(MARQUEESTYLE), typeof( Marquee )) }
         };
 
+        public static CssCategory GetStringToCssCategory(string cssStringKey)
+        {
+            if (StringToCssCategory.Keys.Contains(cssStringKey))
+            {
+                return StringToCssCategory[cssStringKey];
+            }
+
+            return null;
+        }
     }
 }

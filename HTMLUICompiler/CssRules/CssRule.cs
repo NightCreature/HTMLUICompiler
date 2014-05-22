@@ -18,7 +18,7 @@ namespace HTMLUICompiler
 
 
 
-    public class COLOR : CssRule
+    public class ColorRule : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -26,7 +26,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class OPACITY : CssRule
+    public class OpacityGroup : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -42,7 +42,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDATTACHMENT : CssRule
+    public class BackgroundAttachment : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -50,7 +50,15 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDCOLOR : CssRule
+    public class BackgroundColor : CssRule
+    {
+        public override void decodeCssString(string cssString)
+        {
+            //throw new NotImplementedException();
+        }
+    }
+
+    public class BackgroundImage : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -58,7 +66,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDIMAGE : CssRule
+    public class BackgroundPosition : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -66,7 +74,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDPOSITION : CssRule
+    public class BackgroundRepeat : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -74,7 +82,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDREPEAT : CssRule
+    public class BackgroundClip : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -82,7 +90,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDCLIP : CssRule
+    public class Backgroundorigin : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -90,7 +98,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDORIGIN : CssRule
+    public class Backgroundsize : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -98,7 +106,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BACKGROUNDSIZE : CssRule
+    public class Border : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -106,7 +114,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BORDER : CssRule
+    public class Borderbottom : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -114,15 +122,7 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BORDERBOTTOM : CssRule
-    {
-        public override void decodeCssString(string cssString)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class BORDERBOTTOMCOLOR : CssRule
+    public class BorderBottomColor : CssRule
     {
         public override void decodeCssString(string cssString)
         {

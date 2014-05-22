@@ -36,7 +36,28 @@ namespace HTMLUICompiler
                 if (cssValueTokens.Count() == 2)
                 {
                     //m_properties.Add(cssValueTokens[0], cssValueTokens[1]);
-                    CssHelpers.CssCategory cssCategory = CssHelpers.StringToCssCategory[cssValueTokens[0]];
+                    CssHelpers.CssCategory cssCategory = CssHelpers.GetStringToCssCategory(cssValueTokens[0]);
+                    if (cssCategory != null)
+                    {
+                        CssGroup cssGroup = GetCssGroup(cssCategory.m_cssGroup);
+                        if (cssGroup == null)
+                        {
+                            cssGroup = (CssGroup)cssCategory.m_cssGroup.GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes);
+                        }
+
+                        CssRule cssRule = cssGroup.GetCssRule(cssCategory.m_cssToken);
+                        if (cssRule == null)
+                        {
+                            cssRule = (CssRule)cssCategory.m_cssToken.GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes);
+                        }
+
+                        cssRule.decodeCssString(cssValueTokens[1]);
+                        cssGroup.AddCssRule(cssRule);
+                        m_properties.Add(cssGroup);
+
+
+                    }
+                    Debug.WriteLine("Couldn't find a match for css key: " + cssValueTokens[0]);
                 }
                 else
                 {
@@ -47,6 +68,18 @@ namespace HTMLUICompiler
 
         public string Name { get { return m_name; } }
 
+        private CssGroup GetCssGroup(Type cssGroupType)
+        {
+            foreach (var group in m_properties)
+            {
+                if (group.GetType() == cssGroupType)
+                {
+                    return group;
+                }
+            }
+
+            return null;
+        }
         private string m_name;
         private List<CssGroup> m_properties;
     }
