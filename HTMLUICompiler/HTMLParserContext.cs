@@ -13,7 +13,7 @@ namespace HTMLUICompiler
         {
             m_includeFiles = new HashSet<String>();
             m_definitionNodes = new Dictionary<String, HTMLDefinitionNode>();
-            m_styleNodes = new Dictionary<String, CssDefinition>();
+            m_styleNodes = new Dictionary<String, CssParser>();
         }
 
         public void addIncludeFile(String includeFileName)
@@ -36,7 +36,7 @@ namespace HTMLUICompiler
         public void addStyleNode(string styleNode)
         {
             styleNode = styleNode.Trim();
-            CssDefinition cssDef = new CssDefinition(styleNode);
+            CssParser cssDef = new CssParser(styleNode);
             m_styleNodes.Add(cssDef.Name, cssDef);
         }
 
@@ -133,7 +133,7 @@ namespace HTMLUICompiler
 
         private HashSet<String> m_includeFiles;
         private Dictionary<String, HTMLDefinitionNode> m_definitionNodes;
-        private Dictionary<String, CssDefinition> m_styleNodes;
+        private Dictionary<String, CssParser> m_styleNodes;
         public XmlDocument IntermediateDocument { get; set; }
         public XmlNode IntermediateRootElement { get; set; }
     }

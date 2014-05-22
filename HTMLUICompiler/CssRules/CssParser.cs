@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HTMLUICompiler
 {
-    public class CssDefinition
+    public class CssParser
     {
-        public CssDefinition(string cssString)
+        public CssParser(string cssString)
         {
             m_name = "";
             m_properties = new List<CssRule>();
