@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.Drawing;
+using System.Diagnostics;
 
 namespace HTMLUICompiler
 {
@@ -21,8 +24,8 @@ namespace HTMLUICompiler
 
         public static Dictionary<string, CssCategory> StringToCssCategory = new Dictionary<string, CssCategory>()
         {
-            {"color", new CssCategory(typeof(ColorRule), typeof(Color)) }, 
-            {"opacity", new CssCategory(typeof(OpacityGroup), typeof(Color)) }, 
+            {"color", new CssCategory(typeof(ColorRule), typeof(CssColor)) }, 
+            {"opacity", new CssCategory(typeof(OpacityGroup), typeof(CssColor)) }, 
             {"background", new CssCategory(typeof(BACKGROUND), typeof(BackgroundAndBorders)) }, 
             {"background-attachment", new CssCategory(typeof(BackgroundAttachment), typeof(BackgroundAndBorders)) }, 
             {"background-color", new CssCategory(typeof(BackgroundColor), typeof(BackgroundAndBorders)) }, 
@@ -260,6 +263,114 @@ namespace HTMLUICompiler
             }
 
             return null;
+        }
+
+        public static Color decodeColorString(string colorString)
+        {
+            Color returnValue = new Color();
+            if (colorString[0] == '#')
+            {
+                colorString = colorString.Replace("#", "");
+                //Hex color value
+                int hexValue = 0;
+                if (int.TryParse(colorString, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out hexValue))
+                {
+                    returnValue = Color.FromArgb(hexValue);
+                }
+            }
+            else if (colorString.Contains("rgb"))
+            {
+                int[] numbers = extractColorNumbers(colorString, "rgb", "");
+                if (numbers.Count() == 3)
+                {
+                    returnValue = Color.FromArgb(numbers[0], numbers[1], numbers[2]);
+                }
+                else
+                {
+                    returnValue = Color.FromArgb(numbers[0], numbers[1], numbers[2], numbers[3]);
+                }
+            }
+            else if (colorString.Contains("hsl"))
+            {
+                int[] numbers = extractColorNumbers(colorString, "rgb", "");
+                if (numbers.Count() == 3)
+                {
+                    returnValue = Color.FromArgb(numbers[0], numbers[1], numbers[2]);
+                }
+                else
+                {
+                    returnValue = Color.FromArgb(numbers[0], numbers[1], numbers[2], numbers[3]);
+                }
+            }
+            else
+            {
+                try
+                {
+                    returnValue = Color.FromName(colorString);
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.Write(ex.Message);
+                }
+                returnValue = new Color();
+            }
+
+            return returnValue;
+        }
+
+        public static int decodePositionString(string positionStr)
+        {
+            return 0;
+        }
+
+        private static int decodeIntFromString(string numberString)
+        {
+            int returnValue = 0;
+
+            int.TryParse(numberString, out returnValue);
+
+            return returnValue;
+        }
+
+        private static int[] extractColorNumbers(string str, string replaceString, string additionalRemovalStrings)
+        {
+            str = str.Replace(replaceString, "");
+            if (str.Contains("a"))
+            {
+                str = str.Replace("a", "");
+            }
+
+            str = str.Replace("(", "");
+            str = str.Replace(")", "");
+            if (additionalRemovalStrings != "")
+            {
+                str = str.Replace(additionalRemovalStrings, "");
+            }
+
+            char[] spiltChars = { ',' };
+            string[] tokens = str.Split(spiltChars, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] numbers = new int[tokens.Count()];
+            for (int counter = 0; counter < tokens.Count(); ++counter)
+            {
+                float value = 0.0f;
+                if (float.TryParse(tokens[counter], out value))
+                {
+                    if (counter < 3)
+                    {
+                        numbers[counter] = (int)value;
+                    }
+                    else
+                    {
+                        numbers[counter] = (int)(value * 255);
+                    }
+                }
+                else
+                {
+                    numbers[counter] = 0;
+                }
+            }
+            return numbers;
         }
     }
 }

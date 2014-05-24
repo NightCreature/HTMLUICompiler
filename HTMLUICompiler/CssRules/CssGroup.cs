@@ -35,7 +35,7 @@ namespace HTMLUICompiler
     }
 
 
-    public class Color : CssGroup
+    public class CssColor : CssGroup
     { }
 
     public class BackgroundAndBorders : CssGroup

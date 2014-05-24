@@ -19,6 +19,9 @@
     default 
     {
       background-color:rgb(255,255,255);
+      background:url(img_flwr.gif);
+      background-size:80px 60px;
+      background-repeat:no-repeat;
     }
   </style>
   

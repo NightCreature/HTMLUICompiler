@@ -19,7 +19,7 @@ namespace HTMLUICompiler
         private void decodeCssString(string cssString)
         {
             string[] intialSplit = { "{" };
-            string[] tokens = cssString.Split(intialSplit, StringSplitOptions.None);
+            string[] tokens = cssString.Split(intialSplit, StringSplitOptions.RemoveEmptyEntries);
             m_name = tokens[0].Trim();
 
             decodeCssValues(tokens);
@@ -29,10 +29,10 @@ namespace HTMLUICompiler
         {
             string[] lineSplit = { ";" };
             string[] cssValueSplit = { ":" };
-            string[] lines = tokens[1].Split(lineSplit, StringSplitOptions.None);
+            string[] lines = tokens[1].Split(lineSplit, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in lines)
             {
-                string[] cssValueTokens = line.Trim().Split(cssValueSplit, StringSplitOptions.None);
+                string[] cssValueTokens = line.Trim().Split(cssValueSplit, StringSplitOptions.RemoveEmptyEntries);
                 if (cssValueTokens.Count() == 2)
                 {
                     //m_properties.Add(cssValueTokens[0], cssValueTokens[1]);
@@ -54,14 +54,19 @@ namespace HTMLUICompiler
                         cssRule.decodeCssString(cssValueTokens[1]);
                         cssGroup.AddCssRule(cssRule);
                         m_properties.Add(cssGroup);
-
-
                     }
-                    Debug.WriteLine("Couldn't find a match for css key: " + cssValueTokens[0]);
+                    else
+                    {
+                        Debug.WriteLine("Couldn't find a match for css key: " + cssValueTokens[0]);
+                    }
                 }
                 else
                 {
-                    Debug.WriteLine("Error in css value");
+                    Debug.Write("Error in css value: ");
+                    foreach (var token in cssValueTokens)
+                    {
+                        Debug.WriteLine(token);
+                    }
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,23 +23,29 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            Color = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color Color { get; set; }
     }
 
     public class OpacityGroup : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            float value = 1.0f;
+            float.TryParse(cssString, out value);
+            Opacity = value;
         }
+
+        public float Opacity { get; set; }
     }
 
     public class BACKGROUND : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -46,31 +53,64 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            if (cssString == "scroll")
+            {
+                Style = AttachementStyle.Scroll;
+            }
+            else if (cssString == "fixed")
+            {
+                Style = AttachementStyle.Fixed;
+            }
+            else if (cssString == "local")
+            {
+                Style = AttachementStyle.Local;
+            }
         }
+
+        public enum AttachementStyle
+        {
+            Scroll, //The background scrolls along with the element. This is default
+            Fixed,  //The background is fixed with regard to the view port
+            Local   //The background scrolls along with the element's contents
+        };
+
+        public AttachementStyle Style { get; set; }
     }
 
     public class BackgroundColor : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            //throw new NotImplementedException();
+            Color = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color Color { get; set; }
     }
 
     public class BackgroundImage : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            string imgurl = cssString.Replace("url", "");
+            imgurl = imgurl.Replace(")", "");
+            imgurl = imgurl.Replace("(", "");
+
+            char[] splitchars = { ',' };
+            Images = imgurl.Split(splitchars);
         }
+
+        public string[] Images { get; set; }
     }
 
     public class BackgroundPosition : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            string positionStr = cssString.Replace("position", "");
+            positionStr = positionStr.Replace(")", "");
+            positionStr = positionStr.Replace("(", "");
+
+            CssHelpers.decodePositionString(positionStr);
         }
     }
 
@@ -78,7 +118,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -86,7 +126,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -94,7 +134,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -102,7 +142,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -110,7 +150,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -118,7 +158,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -126,7 +166,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -134,7 +174,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -142,7 +182,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -150,7 +190,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -158,7 +198,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -166,7 +206,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -174,7 +214,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -182,7 +222,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -190,7 +230,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -198,7 +238,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -206,7 +246,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -214,7 +254,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -222,7 +262,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -230,7 +270,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -238,7 +278,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -246,7 +286,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -254,7 +294,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -262,7 +302,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -270,7 +310,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -278,7 +318,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -286,7 +326,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -294,7 +334,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -302,7 +342,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -310,7 +350,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -318,7 +358,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -326,7 +366,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -334,7 +374,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -342,7 +382,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -350,7 +390,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -358,7 +398,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -366,7 +406,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -374,7 +414,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -382,7 +422,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -390,7 +430,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -398,7 +438,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -406,7 +446,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -414,7 +454,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -422,7 +462,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -430,7 +470,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -438,7 +478,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -446,7 +486,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -454,7 +494,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -462,7 +502,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -470,7 +510,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -478,7 +518,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -486,7 +526,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -494,7 +534,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -502,7 +542,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -510,7 +550,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -518,7 +558,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -526,7 +566,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -534,7 +574,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -542,7 +582,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -550,7 +590,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -558,7 +598,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -566,7 +606,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -574,7 +614,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -582,7 +622,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -590,7 +630,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -598,7 +638,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -606,7 +646,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -614,7 +654,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -622,7 +662,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -630,7 +670,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -638,7 +678,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -646,7 +686,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -654,7 +694,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -662,7 +702,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -670,7 +710,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -678,7 +718,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -686,7 +726,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -694,7 +734,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -702,7 +742,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -710,7 +750,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -718,7 +758,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -726,7 +766,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -734,7 +774,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -742,7 +782,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -750,7 +790,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -758,7 +798,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -766,7 +806,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -774,7 +814,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -782,7 +822,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -790,7 +830,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -798,7 +838,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -806,7 +846,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -814,7 +854,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -822,7 +862,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -830,7 +870,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -838,7 +878,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -846,7 +886,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -854,7 +894,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -862,7 +902,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -870,7 +910,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -878,7 +918,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -886,7 +926,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -894,7 +934,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -902,7 +942,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -910,7 +950,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -918,7 +958,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -926,7 +966,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -934,7 +974,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -942,7 +982,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -950,7 +990,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -958,7 +998,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -966,7 +1006,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -974,7 +1014,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -982,7 +1022,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -990,7 +1030,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -998,7 +1038,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1006,7 +1046,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1014,7 +1054,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1022,7 +1062,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1030,7 +1070,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1038,7 +1078,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1046,7 +1086,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1054,7 +1094,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1062,7 +1102,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1070,7 +1110,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1078,7 +1118,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1086,7 +1126,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1094,7 +1134,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1102,7 +1142,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1110,7 +1150,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1118,7 +1158,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1126,7 +1166,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1134,7 +1174,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1142,7 +1182,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1150,7 +1190,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1158,7 +1198,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1166,7 +1206,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1174,7 +1214,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1182,7 +1222,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1190,7 +1230,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1198,7 +1238,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1206,7 +1246,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1214,7 +1254,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1222,7 +1262,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1230,7 +1270,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1238,7 +1278,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1246,7 +1286,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1254,7 +1294,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1262,7 +1302,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1270,7 +1310,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1278,7 +1318,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1286,7 +1326,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1294,7 +1334,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1302,7 +1342,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1310,7 +1350,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1318,7 +1358,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1326,7 +1366,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1334,7 +1374,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1342,7 +1382,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1350,7 +1390,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1358,7 +1398,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1366,7 +1406,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1374,7 +1414,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1382,7 +1422,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1390,7 +1430,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1398,7 +1438,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1406,7 +1446,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1414,7 +1454,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1422,7 +1462,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1430,7 +1470,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1438,7 +1478,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1446,7 +1486,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1454,7 +1494,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1462,7 +1502,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1470,7 +1510,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1478,7 +1518,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1486,7 +1526,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1494,7 +1534,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1502,7 +1542,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1510,7 +1550,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1518,7 +1558,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1526,7 +1566,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1534,7 +1574,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1542,7 +1582,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1550,7 +1590,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1558,7 +1598,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1566,7 +1606,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1574,7 +1614,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1582,7 +1622,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1590,7 +1630,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1598,7 +1638,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1606,7 +1646,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1614,7 +1654,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1622,7 +1662,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1630,7 +1670,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1638,7 +1678,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1646,7 +1686,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1654,7 +1694,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1662,7 +1702,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1670,7 +1710,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1678,7 +1718,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1686,7 +1726,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1694,7 +1734,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1702,7 +1742,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1710,7 +1750,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1718,7 +1758,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1726,7 +1766,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1734,7 +1774,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1742,7 +1782,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1750,7 +1790,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1758,7 +1798,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1766,7 +1806,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1774,7 +1814,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1782,7 +1822,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1790,7 +1830,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1798,7 +1838,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1806,7 +1846,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1814,7 +1854,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1822,7 +1862,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1830,7 +1870,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1838,7 +1878,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -1846,7 +1886,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
