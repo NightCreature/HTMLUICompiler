@@ -9,6 +9,7 @@ using System.Diagnostics;
 
 namespace HTMLUICompiler
 {
+
     public class CssHelpers
     {
         public class CssCategory
@@ -316,11 +317,6 @@ namespace HTMLUICompiler
             }
 
             return returnValue;
-        }
-
-        public static int decodePositionString(string positionStr)
-        {
-            return 0;
         }
 
         private static int decodeIntFromString(string numberString)

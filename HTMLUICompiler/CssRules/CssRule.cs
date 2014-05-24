@@ -110,8 +110,10 @@ namespace HTMLUICompiler
             positionStr = positionStr.Replace(")", "");
             positionStr = positionStr.Replace("(", "");
 
-            CssHelpers.decodePositionString(positionStr);
+            Position.decodeCssString(positionStr);
         }
+
+        public CssPosition Position { get; set; }
     }
 
     public class BackgroundRepeat : CssRule

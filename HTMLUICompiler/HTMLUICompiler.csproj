@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="CssRules\CssGroup.cs" />
     <Compile Include="CssRules\CssParser.cs" />
+    <Compile Include="CssRules\CssPosition.cs" />
     <Compile Include="CssRules\CssRule.cs" />
     <Compile Include="CssRules\ColorCssRule.cs" />
     <Compile Include="CssRules\CssHelpers.cs" />
