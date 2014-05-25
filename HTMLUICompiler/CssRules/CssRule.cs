@@ -261,7 +261,7 @@ namespace HTMLUICompiler
         public CssPosition Position { get; set; }
     }
 
-    public class BORDERBOTTOMSTYLE : CssRule
+    public class CssBorderStyle : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -322,6 +322,10 @@ namespace HTMLUICompiler
         }
 
         public BorderBottomStyle Style { get; set; }
+    }
+
+    public class BORDERBOTTOMSTYLE : CssBorderStyle
+    {
     }
 
     public class BORDERBOTTOMWIDTH : CssRule
@@ -411,12 +415,8 @@ namespace HTMLUICompiler
         public Color BorderColor { get; set; }
     }
 
-    public class BORDERLEFTSTYLE : CssRule
+    public class BORDERLEFTSTYLE : CssBorderStyle
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERLEFTWIDTH : CssRule
@@ -453,12 +453,8 @@ namespace HTMLUICompiler
         public Color BorderColor { get; set; }
     }
 
-    public class BORDERRIGHTSTYLE : CssRule
+    public class BORDERRIGHTSTYLE : CssBorderStyle
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERRIGHTWIDTH : CssRule
@@ -469,12 +465,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BORDERSTYLE : CssRule
+    public class BORDERSTYLE : CssBorderStyle
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERTOP : CssRule
@@ -511,12 +503,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BORDERTOPSTYLE : CssRule
+    public class BORDERTOPSTYLE : CssBorderStyle
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERTOPWIDTH : CssRule
