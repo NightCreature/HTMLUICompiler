@@ -328,12 +328,19 @@ namespace HTMLUICompiler
     {
     }
 
-    public class BORDERBOTTOMWIDTH : CssRule
+    public class CssWidthRule : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            
+
         }
+
+        public int Width { get; set; }
+    }
+
+    public class BORDERBOTTOMWIDTH : CssWidthRule
+    {
+
     }
 
     public class BORDERCOLOR : CssRule
@@ -419,12 +426,8 @@ namespace HTMLUICompiler
     {
     }
 
-    public class BORDERLEFTWIDTH : CssRule
+    public class BORDERLEFTWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERRADIUS : CssRule
@@ -457,12 +460,8 @@ namespace HTMLUICompiler
     {
     }
 
-    public class BORDERRIGHTWIDTH : CssRule
+    public class BORDERRIGHTWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERSTYLE : CssBorderStyle
@@ -507,20 +506,12 @@ namespace HTMLUICompiler
     {
     }
 
-    public class BORDERTOPWIDTH : CssRule
+    public class BORDERTOPWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
-    public class BORDERWIDTH : CssRule
+    public class BORDERWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BOXDECORATIONBREAK : CssRule
@@ -683,12 +674,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class WIDTH : CssRule
+    public class WIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class VERTICALALIGN : CssRule
@@ -851,12 +838,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class MAXWIDTH : CssRule
+    public class MAXWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class MINHEIGHT : CssRule
@@ -867,12 +850,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class MINWIDTH : CssRule
+    public class MINWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class ORDER : CssRule
@@ -1638,12 +1617,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class OUTLINEWIDTH : CssRule
+    public class OUTLINEWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class RESIZE : CssRule
@@ -1736,12 +1711,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class COLUMNRULEWIDTH : CssRule
+    public class COLUMNRULEWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class COLUMNSPAN : CssRule
@@ -1752,12 +1723,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class COLUMNWIDTH : CssRule
+    public class COLUMNWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class COLUMNS : CssRule
