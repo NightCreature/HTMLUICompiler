@@ -116,7 +116,7 @@ namespace HTMLUICompiler
         public CssPosition Position { get; set; }
     }
 
-    public class BackgroundRepeat : CssRule
+    public class CssRepeatRule : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -147,6 +147,9 @@ namespace HTMLUICompiler
 
         public Repeat RepeatBackGround { get; set; }
     }
+
+    public class BackgroundRepeat : CssRepeatRule
+    { } //Just a typedef
 
     public class BackgroundClip : CssRule
     {
@@ -362,12 +365,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BORDERIMAGEREPEAT : CssRule
+    public class BORDERIMAGEREPEAT : CssRepeatRule
     {
-        public override void decodeCssString(string cssString)
-        {
-            
-        }
     }
 
     public class BORDERIMAGESLICE : CssRule
