@@ -120,24 +120,88 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            if (cssString == "repeat")
+            {
+                RepeatBackGround = Repeat.repeat;
+            }
+            else if (cssString == "repeat-x")
+            {
+                RepeatBackGround = Repeat.repeatx;
+            }
+            else if (cssString == "repeat-y")
+            {
+                RepeatBackGround = Repeat.repeaty;
+            }
+            else if (cssString == "no-repeat")
+            {
+                RepeatBackGround = Repeat.norepeat;
+            }
         }
+        enum Repeat
+        {
+            repeat, //	The background image will be repeated both vertically and horizontally. This is default 	Play it »
+            repeatx, //	The background image will be repeated only horizontally 	Play it »
+            repeaty, //	The background image will be repeated only vertically 	Play it »
+            norepeat,// 	The background-image will not be repeated
+        };
+
+        public Repeat RepeatBackGround { get; set; }
     }
 
     public class BackgroundClip : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            
+            if (cssString == "border-box")
+            {
+                Clip = ClipBox.border;
+            }
+            else if (cssString == "padding-box")
+            {
+                Clip = ClipBox.padding;
+            }
+            else if (cssString == "content-box")
+            {
+                Clip = ClipBox.content;
+            }
         }
+
+        public enum ClipBox
+        {
+            border, 	//Default value. The background is clipped to the border box 	Play it »
+            padding, 	//The background is clipped to the padding box 	Play it »
+            content,	//The background is clipped to the content box
+        };
+
+        public ClipBox Clip { get; set; }
     }
 
     public class Backgroundorigin : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            
+            if (cssString == "border-box")
+            {
+                Clip = OriginBox.border;
+            }
+            else if (cssString == "padding-box")
+            {
+                Clip = OriginBox.padding;
+            }
+            else if (cssString == "content-box")
+            {
+                Clip = OriginBox.content;
+            }
         }
+
+        public enum OriginBox
+        {
+            border, 	//Default value. The background is clipped to the border box 	Play it »
+            padding, 	//The background is clipped to the padding box 	Play it »
+            content,	//The background is clipped to the content box
+        };
+
+        public OriginBox Clip { get; set; }
     }
 
     public class Backgroundsize : CssRule
@@ -168,8 +232,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            Color = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color Color { get; set; }
     }
 
     public class BORDERBOTTOMLEFTRADIUS : CssRule
