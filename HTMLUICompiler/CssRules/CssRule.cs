@@ -87,7 +87,7 @@ namespace HTMLUICompiler
         public Color Color { get; set; }
     }
 
-    public class BackgroundImage : CssRule
+    public class CssImageRule : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -102,7 +102,11 @@ namespace HTMLUICompiler
         public string[] Images { get; set; }
     }
 
-    public class BackgroundPosition : CssRule
+    public class BackgroundImage : CssImageRule
+    {
+    }
+
+    public class CssPositionRule : CssRule
     {
         public override void decodeCssString(string cssString)
         {
@@ -116,7 +120,11 @@ namespace HTMLUICompiler
         public CssPosition Position { get; set; }
     }
 
-    public class CssRepeatRule : CssRule
+    public class BackgroundPosition : CssPositionRule
+    {
+    }
+
+    public class CssRepeatRule : CssRule //Double check where this is used it is not always the same rule
     {
         public override void decodeCssString(string cssString)
         {
