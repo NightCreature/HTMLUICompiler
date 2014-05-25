@@ -137,7 +137,7 @@ namespace HTMLUICompiler
                 RepeatBackGround = Repeat.norepeat;
             }
         }
-        enum Repeat
+        public enum Repeat
         {
             repeat, //	The background image will be repeated both vertically and horizontally. This is default 	Play it »
             repeatx, //	The background image will be repeated only horizontally 	Play it »
@@ -242,24 +242,83 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            Position.decodeCssString(cssString);
         }
+
+        public CssPosition Position { get; set; }
     }
 
     public class BORDERBOTTOMRIGHTRADIUS : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            
+            Position.decodeCssString(cssString);
         }
+
+        public CssPosition Position { get; set; }
     }
 
     public class BORDERBOTTOMSTYLE : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-            
+            if ("none" == cssString)
+            {
+                Style = BorderBottomStyle.none;
+            }
+            else if ("hidden" == cssString)
+            {
+                Style = BorderBottomStyle.hidden;
+            }
+            else if ("dotted" == cssString)
+            {
+                Style = BorderBottomStyle.dotted;
+            }
+            else if ("dashed" == cssString)
+            {
+                Style = BorderBottomStyle.dashed;
+            }
+            else if ("solid" == cssString)
+            {
+                Style = BorderBottomStyle.solid;
+            }
+            else if ("double" == cssString)
+            {
+                Style = BorderBottomStyle.doubleborder;
+            }
+            else if ("groove" == cssString)
+            {
+                Style = BorderBottomStyle.groove;
+            }
+            else if ("ridge" == cssString)
+            {
+                Style = BorderBottomStyle.ridge;
+            }
+            else if ("inset" == cssString)
+            {
+                Style = BorderBottomStyle.inset;
+            }
+            else if ("outset" == cssString)
+            {
+                Style = BorderBottomStyle.outset;
+            }
         }
+
+        public enum BorderBottomStyle
+        {
+            none, 	//Specifies no border. This is default 	Play it »	
+            hidden, 	//The same as "none", except in border conflict resolution for table elements 	Play it »	
+            dotted, 	//Specifies a dotted border 	Play it »	
+            dashed, 	//Specifies a dashed border 	Play it »
+            solid,	//Specifies a solid border 	Play it »
+            doubleborder, 	//Specifies a double border 	Play it »
+            groove, 	//Specifies a 3D grooved border. The effect depends on the border-color value 	Play it »
+            ridge, 	//Specifies a 3D ridged border. The effect depends on the border-color value 	Play it »
+            inset, 	//Specifies a 3D inset border. The effect depends on the border-color value 	Play it »
+            outset, 	//Specifies a 3D outset border. The effect depends on the border-color value 	Play it »
+        }
+
+        public BorderBottomStyle Style { get; set; }
     }
 
     public class BORDERBOTTOMWIDTH : CssRule
@@ -274,8 +333,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class BORDERIMAGE : CssRule
@@ -338,8 +399,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class BORDERLEFTSTYLE : CssRule
@@ -378,8 +441,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class BORDERRIGHTSTYLE : CssRule
@@ -418,8 +483,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class BORDERTOPLEFTRADIUS : CssRule
@@ -962,8 +1029,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class TEXTDECORATIONLINE : CssRule
@@ -1546,8 +1615,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class OUTLINEOFFSET : CssRule
@@ -1650,8 +1721,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            BorderColor = CssHelpers.decodeColorString(cssString);
         }
+
+        public Color BorderColor { get; set; }
     }
 
     public class COLUMNRULESTYLE : CssRule
