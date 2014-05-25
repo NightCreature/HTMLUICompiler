@@ -343,8 +343,15 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            string imgurl = cssString.Replace("url", "");
+            imgurl = imgurl.Replace(")", "");
+            imgurl = imgurl.Replace("(", "");
+
+            char[] splitchars = { ',' };
+            Images = imgurl.Split(splitchars);
         }
+
+        public string[] Images { get; set; }
     }
 
     public class BORDERIMAGEOUTSET : CssRule
@@ -1335,8 +1342,15 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+            string imgurl = cssString.Replace("url", "");
+            imgurl = imgurl.Replace(")", "");
+            imgurl = imgurl.Replace("(", "");
+
+            char[] splitchars = { ',' };
+            Images = imgurl.Split(splitchars);
         }
+
+        public string[] Images { get; set; }
     }
 
     public class LISTSTYLEPOSITION : CssRule
