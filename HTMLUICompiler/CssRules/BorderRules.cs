@@ -121,16 +121,6 @@ namespace HTMLUICompiler
     {
     }
 
-    public class CssWidthRule : CssRule
-    {
-        public override void decodeCssString(string cssString)
-        {
-
-        }
-
-        public int Width { get; set; }
-    }
-
     public class BORDERBOTTOMWIDTH : CssWidthRule
     {
 
@@ -189,12 +179,8 @@ namespace HTMLUICompiler
         }
     }
 
-    public class BORDERIMAGEWIDTH : CssRule
+    public class BORDERIMAGEWIDTH : CssWidthRule
     {
-        public override void decodeCssString(string cssString)
-        {
-
-        }
     }
 
     public class BORDERLEFT : CssRule

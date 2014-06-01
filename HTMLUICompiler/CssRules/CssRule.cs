@@ -57,6 +57,16 @@ namespace HTMLUICompiler
         public CssPosition Position { get; set; }
     }
 
+    public class CssWidthRule : CssRule
+    {
+        public override void decodeCssString(string cssString)
+        {
+            Width = CssHelpers.decodeCssUnit(cssString);
+        }
+
+        public CssUnit Width { get; set; }
+    }
+
     public class CssImageRule : CssRule
     {
         public override void decodeCssString(string cssString)
