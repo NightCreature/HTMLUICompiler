@@ -9,6 +9,43 @@ using System.Diagnostics;
 
 namespace HTMLUICompiler
 {
+    public class CssUnit
+    {
+        public enum ValueType
+        {
+            percentage, //percentage
+            inch, //inch
+            cm, //centimeter
+            mm, //millimeter
+            em, //1em is equal to the current font size. 2em means 2 times the size of the current font. E.g., if an element is displayed with a font of 12 pt, then '2em' is 24 pt. The 'em' is a very useful unit in CSS, since it can adapt automatically to the font that the reader uses
+            ex, //one ex is the x-height of a font (x-height is usually about half the font-size)
+            pt, //point (1 pt is the same as 1/72 inch)
+            pc, //pica (1 pc is the same as 12 points)
+            px, //pixels (a dot on the computer screen)
+        };
+
+        public static Dictionary<String, ValueType> PositionTable = new Dictionary<String, ValueType>()
+            {
+                {"%", ValueType.percentage},
+                {"in", ValueType.inch},
+                {"cm", ValueType.cm},
+                {"mm", ValueType.mm},
+                {"em", ValueType.em},
+                {"ex", ValueType.ex},
+                {"pc", ValueType.pc},
+                {"px", ValueType.px}
+            };
+
+        public float value;
+        public ValueType valueType;
+    }
+
+    public class CssPoint
+    {
+        public CssUnit xValue;
+        public CssUnit yValue;
+    }
+
     public class CssPosition
     {
         public CssPosition()
@@ -34,28 +71,28 @@ namespace HTMLUICompiler
                     var match = regex.Match(positionTokens[0]);
                     float value = 0.0f;
                     float.TryParse(match.Groups["number"].Value, out value);
-                    Position.xValue = value;
-                    if (CssPoint.PositionTable.ContainsKey(match.Groups["suffix"].Value))
+                    Position.xValue.value = value;
+                    if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
                     {
-                        Position.xValueType = CssPoint.PositionTable[match.Groups["suffix"].Value];
+                        Position.xValue.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
                     }
                     else
                     {
                         Debug.WriteLine("Error: no suffix was found on a numerical position definition");
                     }
 
-                    Position.yValue = 50.0f;
-                    Position.yValueType = CssPoint.ValueType.percentage;
+                    Position.yValue.value = 50.0f;
+                    Position.yValue.valueType = CssUnit.ValueType.percentage;
                 }
                 else if (positionTokens.Count() == 2)
                 {
                     var match = regex.Match(positionTokens[0]);
                     float value = 0.0f;
                     float.TryParse(match.Groups["number"].Value, out value);
-                    Position.xValue = value;
-                    if (CssPoint.PositionTable.ContainsKey(match.Groups["suffix"].Value))
+                    Position.xValue.value = value;
+                    if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
                     {
-                        Position.xValueType = CssPoint.PositionTable[match.Groups["suffix"].Value];
+                        Position.xValue.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
                     }
                     else
                     {
@@ -63,10 +100,10 @@ namespace HTMLUICompiler
                     }
 
                     float.TryParse(match.Groups["number"].Value, out value);
-                    Position.yValue = value;
-                    if (CssPoint.PositionTable.ContainsKey(match.Groups["suffix"].Value))
+                    Position.yValue.value = value;
+                    if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
                     {
-                        Position.yValueType = CssPoint.PositionTable[match.Groups["suffix"].Value];
+                        Position.yValue.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
                     }
                     else
                     {
@@ -93,39 +130,6 @@ namespace HTMLUICompiler
             centertop,
             centercenter,
             centerbottom
-        }
-
-        public class CssPoint
-        {
-            public enum ValueType
-            {
-                percentage, //percentage
-                inch, //inch
-                cm, //centimeter
-                mm, //millimeter
-                em, //1em is equal to the current font size. 2em means 2 times the size of the current font. E.g., if an element is displayed with a font of 12 pt, then '2em' is 24 pt. The 'em' is a very useful unit in CSS, since it can adapt automatically to the font that the reader uses
-                ex, //one ex is the x-height of a font (x-height is usually about half the font-size)
-                pt, //point (1 pt is the same as 1/72 inch)
-                pc, //pica (1 pc is the same as 12 points)
-                px, //pixels (a dot on the computer screen)
-            };
-
-            public float xValue;
-            public float yValue;
-            public ValueType xValueType;
-            public ValueType yValueType;
-
-            public static Dictionary<String, ValueType> PositionTable = new Dictionary<String, ValueType>()
-            {
-                {"%", ValueType.percentage},
-                {"in", ValueType.inch},
-                {"cm", ValueType.cm},
-                {"mm", ValueType.mm},
-                {"em", ValueType.em},
-                {"ex", ValueType.ex},
-                {"pc", ValueType.pc},
-                {"px", ValueType.px}
-            };
         }
 
         public NamedPosition ScreenPosition { get; set; }

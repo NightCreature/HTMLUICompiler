@@ -72,6 +72,7 @@ namespace HTMLUICompiler
         public string[] Images { get; set; }
     }
 
+    //Has no definition in the standard
     public class BOXDECORATIONBREAK : CssRule
     {
         public override void decodeCssString(string cssString)

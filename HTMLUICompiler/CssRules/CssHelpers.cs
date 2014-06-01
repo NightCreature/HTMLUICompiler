@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Drawing;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace HTMLUICompiler
 {
@@ -367,6 +368,31 @@ namespace HTMLUICompiler
                 }
             }
             return numbers;
+        }
+
+        public static CssUnit decodeCssUnit(string cssString)
+        {
+            char[] splitChars = { ' ' };
+            string[] positionTokens = cssString.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+            Regex regex = new Regex("(?<number>\\d)(?<suffix>.*)", RegexOptions.IgnoreCase);
+            CssUnit unit = new CssUnit();
+            if (positionTokens.Count() == 1)
+            {
+                var match = regex.Match(positionTokens[0]);
+                float value = 0.0f;
+                float.TryParse(match.Groups["number"].Value, out value);
+                unit.value = value;
+                if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
+                {
+                    unit.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
+                }
+                else
+                {
+                    Debug.WriteLine("Error: no suffix was found on a numerical position definition");
+                }
+            }
+
+            return unit;
         }
     }
 }
