@@ -139,6 +139,7 @@ namespace HTMLUICompiler
                 return;
             }
             string position = tokens[0] + " " + tokens[1];
+            ShadowPosition = new CssPosition();
             ShadowPosition.decodeCssString(position);
 
             if (tokens.Length >= 3)
@@ -166,6 +167,7 @@ namespace HTMLUICompiler
                     }
                 }
 
+                BlurSpread = new CssPosition();
                 BlurSpread.decodeCssString(blurSpread);
 
                 if (tokens.Length >= 6)

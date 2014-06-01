@@ -11,8 +11,10 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-
+            Bottom = CssHelpers.decodeCssUnit(cssString);
         }
+
+        public CssUnit Bottom { get; set; }
     }
 
     public class CLEAR : CssRule
@@ -43,16 +45,20 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-
+            Height = CssHelpers.decodeCssUnit(cssString);
         }
+
+        public CssUnit Height { get; set; }
     }
 
     public class LEFT : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-
+            Left = CssHelpers.decodeCssUnit(cssString);
         }
+
+        public CssUnit Left { get; set; }
     }
 
     public class OVERFLOW : CssRule
@@ -131,16 +137,20 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-
+            Right = CssHelpers.decodeCssUnit(cssString);
         }
+
+        public CssUnit Right { get; set; }
     }
 
     public class TOP : CssRule
     {
         public override void decodeCssString(string cssString)
         {
-
+            Top = CssHelpers.decodeCssUnit(cssString);
         }
+
+        public CssUnit Top { get; set; }
     }
 
     public class VISIBILITY : CssRule
