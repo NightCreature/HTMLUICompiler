@@ -23,6 +23,12 @@
       background-size:80px 60px;
       background-repeat:no-repeat;
     }
+    
+    p
+    {
+    border-style:solid;
+    border-left-width:15px;
+    } 
   </style>
   
   <body>

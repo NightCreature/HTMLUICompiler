@@ -51,6 +51,7 @@ namespace HTMLUICompiler
             positionStr = positionStr.Replace(")", "");
             positionStr = positionStr.Replace("(", "");
 
+            Position = new CssPosition();
             Position.decodeCssString(positionStr);
         }
 
@@ -80,6 +81,38 @@ namespace HTMLUICompiler
         }
 
         public string[] Images { get; set; }
+    }
+
+    public class CssRepeatRule : CssRule //Double check where this is used it is not always the same rule
+    {
+        public override void decodeCssString(string cssString)
+        {
+            if (cssString == "repeat")
+            {
+                RepeatBackGround = Repeat.repeat;
+            }
+            else if (cssString == "repeat-x")
+            {
+                RepeatBackGround = Repeat.repeatx;
+            }
+            else if (cssString == "repeat-y")
+            {
+                RepeatBackGround = Repeat.repeaty;
+            }
+            else if (cssString == "no-repeat")
+            {
+                RepeatBackGround = Repeat.norepeat;
+            }
+        }
+        public enum Repeat
+        {
+            repeat, //	The background image will be repeated both vertically and horizontally. This is default 	Play it »
+            repeatx, //	The background image will be repeated only horizontally 	Play it »
+            repeaty, //	The background image will be repeated only vertically 	Play it »
+            norepeat,// 	The background-image will not be repeated
+        };
+
+        public Repeat RepeatBackGround { get; set; }
     }
 
     //Has no definition in the standard

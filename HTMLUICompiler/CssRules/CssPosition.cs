@@ -54,6 +54,7 @@ namespace HTMLUICompiler
 
         public void decodeCssString(string cssString)
         {
+            Position = new CssPoint();
             if (PositionTable.ContainsKey(cssString))
             {
                 ScreenPosition = PositionTable[cssString];
@@ -68,47 +69,14 @@ namespace HTMLUICompiler
                 Regex regex = new Regex("(?<number>\\d)(?<suffix>.*)", RegexOptions.IgnoreCase);
                 if (positionTokens.Count() == 1)
                 {
-                    var match = regex.Match(positionTokens[0]);
-                    float value = 0.0f;
-                    float.TryParse(match.Groups["number"].Value, out value);
-                    Position.xValue.value = value;
-                    if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
-                    {
-                        Position.xValue.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Error: no suffix was found on a numerical position definition");
-                    }
-
+                    Position.xValue = CssHelpers.decodeCssUnit(positionTokens[0]);
                     Position.yValue.value = 50.0f;
                     Position.yValue.valueType = CssUnit.ValueType.percentage;
                 }
                 else if (positionTokens.Count() == 2)
                 {
-                    var match = regex.Match(positionTokens[0]);
-                    float value = 0.0f;
-                    float.TryParse(match.Groups["number"].Value, out value);
-                    Position.xValue.value = value;
-                    if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
-                    {
-                        Position.xValue.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Error: no suffix was found on a numerical position definition");
-                    }
-
-                    float.TryParse(match.Groups["number"].Value, out value);
-                    Position.yValue.value = value;
-                    if (CssUnit.PositionTable.ContainsKey(match.Groups["suffix"].Value))
-                    {
-                        Position.yValue.valueType = CssUnit.PositionTable[match.Groups["suffix"].Value];
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Error: no suffix was found on a numerical position definition");
-                    }
+                    Position.xValue = CssHelpers.decodeCssUnit(positionTokens[0]);
+                    Position.yValue = CssHelpers.decodeCssUnit(positionTokens[1]);
                 }
                 else
                 {
