@@ -63,12 +63,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CssRules\AnimationRules.cs" />
+    <Compile Include="CssRules\BackgroundRules.cs" />
+    <Compile Include="CssRules\BasicUIRules.cs" />
+    <Compile Include="CssRules\BorderRules.cs" />
+    <Compile Include="CssRules\BoxRules.cs" />
+    <Compile Include="CssRules\ColumnRules.cs" />
     <Compile Include="CssRules\CssGroup.cs" />
     <Compile Include="CssRules\CssParser.cs" />
     <Compile Include="CssRules\CssPosition.cs" />
     <Compile Include="CssRules\CssRule.cs" />
     <Compile Include="CssRules\ColorCssRule.cs" />
     <Compile Include="CssRules\CssHelpers.cs" />
+    <Compile Include="CssRules\FontRules.cs" />
+    <Compile Include="CssRules\ListTableWriteRules.cs" />
+    <Compile Include="CssRules\MiscRules.cs" />
+    <Compile Include="CssRules\SpeechRules.cs" />
+    <Compile Include="CssRules\TextRules.cs" />
+    <Compile Include="CssRules\TransformationRules.cs" />
     <Compile Include="HTMLDefinitionNode.cs" />
     <Compile Include="HTMLParser.cs" />
     <Compile Include="HTMLParserContext.cs" />

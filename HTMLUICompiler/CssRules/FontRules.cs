@@ -10,6 +10,10 @@ namespace HTMLUICompiler
     public class FONT : CssRule
     {
 
+        public override void decodeCssString(string cssString)
+        {
+
+        }
     }
 
     public class FONTFAMILY : CssRule

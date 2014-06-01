@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace HTMLUICompiler
 {
@@ -74,7 +76,7 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-            
+
         }
     }
 
@@ -82,8 +84,67 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
+            Inset = false;
+
+            char[] splitChars = { ' ' };
+            string[] tokens = cssString.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+
+            if (tokens.Length < 2)
+            {
+                Debug.WriteLine("Error in BoxShadow css rule need to have a h and v position");
+                return;
+            }
+            string position = tokens[0] + " " + tokens[1];
+            ShadowPosition.decodeCssString(position);
+
+            if (tokens.Length >= 3)
+            {
+                Regex regex = new Regex("\\d");
+                string blurSpread = "";
+                if (regex.IsMatch(tokens[2]))
+                {
+                    blurSpread = tokens[2];
+                }
+                else
+                {
+                    ShadowColor = CssHelpers.decodeColorString(tokens[2]);
+                }
+
+                if (tokens.Length >= 4)
+                {
+                    if (regex.IsMatch(tokens[3]))
+                    {
+                        blurSpread += " " + tokens[3];
+                    }
+                    else
+                    {
+                        ShadowColor = CssHelpers.decodeColorString(tokens[3]);
+                    }
+                }
+
+                BlurSpread.decodeCssString(blurSpread);
+
+                if (tokens.Length >= 6)
+                {
+                    ShadowColor = CssHelpers.decodeColorString(tokens[4]);
+                    if (tokens[5] == "inset")
+                    {
+                        Inset = true;
+                    }
+                }
+                else
+                {
+                    ShadowColor = CssHelpers.decodeColorString(tokens[4]);
+                }
+            }
+
             
         }
+
+        public CssPosition ShadowPosition { get; set; }
+        public CssPosition BlurSpread { get; set; }
+        public Color ShadowColor { get; set; }
+        public bool Inset { get; set; }
     }
 
 }
