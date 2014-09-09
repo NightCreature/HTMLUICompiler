@@ -4,7 +4,11 @@ using System.IO;
 using System.Xml;
 
 namespace HTMLUICompiler
-{
+{ 
+    public class Change
+    {
+        public Change() {}
+    }
     public class HTMLParser
     {
         public struct ParserSettings
