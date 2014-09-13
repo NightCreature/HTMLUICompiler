@@ -157,8 +157,18 @@ namespace HTMLUICompiler
     {
         public override void decodeCssString(string cssString)
         {
-
+            //Decode visible or hidden
+            if (cssString == "hidden")
+            {
+                Visibility = false;
+            }
+            else
+            {
+                Visibility = true;
+            }
         }
+
+        public bool Visibility { get; set; }
     }
 
     public class WIDTH : CssWidthRule
